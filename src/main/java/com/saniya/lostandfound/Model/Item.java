@@ -32,9 +32,9 @@ public class Item {
     @ManyToMany(mappedBy = "items")
     private Set<User> users;
 
-    public Item(String status) {
+    public Item() {
         this.users = new HashSet<>();
-        this.status = status;
+        this.status = "Lost";
     }
 
     public Item(String category, String itemName) {

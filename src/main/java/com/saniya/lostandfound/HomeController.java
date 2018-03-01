@@ -98,7 +98,7 @@ public class HomeController {
 
     @GetMapping("/addlostitem")
     public String addLostItem(Model model){
-        model.addAttribute("item", new Item("Lost"));
+        model.addAttribute("item", new Item());
         return "LostItemForm";
     }
 
@@ -110,7 +110,8 @@ public class HomeController {
         itemRepository.save(item);
         User user = userRepository.findByUsername(auth.getName());
         user.addItem(item);
-        return "redirect:/";
+        userRepository.save(user);
+        return "redirect:/viewlostitems";
     }
 
     @PostMapping("/addlostitemA")
@@ -119,7 +120,7 @@ public class HomeController {
             return "LostItemForm";
         }
         itemRepository.save(item);
-        return "redirect:/";
+        return "redirect:/viewlostitems";
     }
 
 
