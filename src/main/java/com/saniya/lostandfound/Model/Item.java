@@ -37,10 +37,18 @@ public class Item {
         this.status = "Lost";
     }
 
+    public Item(String category, String itemName, String image) {
+        this.category = category;
+        this.itemName = itemName;
+        this.image = image;
+    }
+
     public Item(String category, String itemName) {
         this.category = category;
         this.itemName = itemName;
+
     }
+
 
 
     public long getId() {

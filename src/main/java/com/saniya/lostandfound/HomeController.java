@@ -57,7 +57,7 @@ public class HomeController {
         }
         user.addRole(roleRepository.findByRoleName("USER"));
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping("/viewlostitems")
@@ -108,7 +108,7 @@ public class HomeController {
         if(result.hasErrors()){
             return "LostItemForm";
         }
-        if (item.getImage() == null){
+        if (item.getImage().isEmpty()){
             if(item.getCategory().equalsIgnoreCase("Clothes")){
                 item.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStPd4U_vJAYIkKvgflddEVasYwDbRzG-yGD4rj2D6UcXdUnbrBXQ");
             }

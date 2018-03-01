@@ -20,17 +20,9 @@
 
 <div class="container">
     <div class="jumbotron">
-
-
-        <div th:replace="Base :: navlinks"></div>
-
-        <div class="container">
-            <div class="jumbotron">
-
-
-                <div th:replace="Base :: navlinks"></div><br /><br />
-                <h4>Pets Reported Lost</h4><br />
-                <table class="table">
+        <div th:replace="Base :: navlinks"></div><br /><br />
+        <h4>Pets Reported Lost</h4><br />
+        <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Pet Name</th>
@@ -46,15 +38,10 @@
                         <td><img th:src="${item.image}" width="100" height="100"/></td>
                         <td th:text="${item.description}"></td>
 
-                        <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/itemfound/{id} (id=${item.id})}">Item has been Found!</a></td>
+                        <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/itemfound/{id} (id=${item.id})}">Item Found!</a></td>
                     </tr>
                     </tbody>
                 </table>
-
-
-            </div>
-        </div>
-
 
     </div>
 </div>
