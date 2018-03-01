@@ -36,6 +36,8 @@ public class User {
     }
 
     public User(String username, String password) {
+        this.roles = new HashSet<>();
+        this.items = new HashSet<>();
         this.username = username;
         this.password = password;
     }
