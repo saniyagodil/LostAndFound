@@ -13,4 +13,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     Item findById(long id);
 
+    Iterable<Item> findByItemNameContains(String query);
+
+    Iterable<Item> findByCategory(String query);
 }

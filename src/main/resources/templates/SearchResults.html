@@ -22,28 +22,35 @@
 <div class="container">
     <div class="jumbotron">
 
-        <div th:replace="Base :: navlinks"></div><br /><br />
-        <div class="container"><br />
-            <div class="row">
-                <div class="col-sm">
-                    <td><a th:href="@{/viewlostclothes}"><img src="/Images/clothes.jpeg" width="200" height="200"/></a></td>
 
-                </div>
-                <div class="col-sm">
-                    <td><a th:href="@{/viewlostpets}"><img src="/Images/cats-and-dogs.jpg" width="200" height="200"/></a></td>
+        <div th:replace="Base :: navlinks"></div> <br /><br />
 
-                </div>
-                <div class="col-sm">
-                    <td><a th:href="@{/viewlostother}"><img src="/Images/others.jpeg" width="200" height="200"/></a></td>
+        <h3>Search Results</h3><br />
 
-                </div>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Item Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.itemName}"></td>
+                <td><img th:src="${item.image}" width="100" height="100"/></td>
+                <td th:text="${item.description}"></td>
+                <td th:text="${item.category}"></td>
+            </tr>
+            </tbody>
+        </table>
 
 
     </div>
 </div>
+
 
 
 

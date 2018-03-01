@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/newuser", "/viewlostitems", "/viewlostclothes", "/viewlostpets", "/viewlostother", "/CSS/**", "/Images/**", "/Fonts/**", "/js/**", "/sass/**", "/assets/**").permitAll()
-                .antMatchers("/viewmyitems", "/addlostitem").access("hasAnyAuthority('USER', 'ADMIN')")
+                .antMatchers("/viewmyitems", "/addlostitem", "/search").access("hasAnyAuthority('USER', 'ADMIN')")
                 .antMatchers("/viewfounditems", "/itemlost/**", "/itemfound/**", "/addlostitemA").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and()

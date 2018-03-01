@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,7 +55,7 @@ public class HomeController {
         if(result.hasErrors()){
             return "Registration";
         }
-        ///set role of user and then save
+        user.addRole(roleRepository.findByRoleName("USER"));
         userRepository.save(user);
         return "redirect:/";
     }
@@ -107,6 +108,17 @@ public class HomeController {
         if(result.hasErrors()){
             return "LostItemForm";
         }
+        if (item.getImage() == null){
+            if(item.getCategory().equalsIgnoreCase("Clothes")){
+                item.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStPd4U_vJAYIkKvgflddEVasYwDbRzG-yGD4rj2D6UcXdUnbrBXQ");
+            }
+            if(item.getCategory().equalsIgnoreCase("Pets")){
+                item.setImage("https://freeclipartimage.com//storage/upload/dog-clipart/dog-clipart-49.png");
+            }
+            if(item.getCategory().equalsIgnoreCase("Other")){
+                item.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzriEmPtgIZE4hBjEFDVLmvMf58CVbodeZ05I0VuCySIxrdWGtHA");
+            }
+        }
         itemRepository.save(item);
         User user = userRepository.findByUsername(auth.getName());
         user.addItem(item);
@@ -123,6 +135,17 @@ public class HomeController {
         return "redirect:/viewlostitems";
     }
 
+    @RequestMapping("/search")
+    public String searchResults(HttpServletRequest request, Model model){
+        String query = request.getParameter("search");
+        if(query.equalsIgnoreCase("Clothes") || query.equalsIgnoreCase("Pets") || query.equalsIgnoreCase("Other")){
+            model.addAttribute("items", itemRepository.findByCategory(query));
+        } else{
+            model.addAttribute("items", itemRepository.findByItemNameContains(query));
+        }
+        model.addAttribute("search", query);
+        return "SearchResults";
+    }
 
 
 ////Admin/////////////////////////////////////////////////////
