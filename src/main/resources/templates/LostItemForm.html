@@ -23,8 +23,8 @@
     <div class="jumbotron">
 
 
-        <div th:replace="Base :: navlinks"></div>
-
+        <div th:replace="Base :: navlinks"></div><br /><br />
+        <h4>Add Lost Item</h4><br />
         <div sec:authorize="hasAuthority('USER')">
             <form action="#" th:action="@{/addlostitem}" th:object="${item}" method="post">
 
