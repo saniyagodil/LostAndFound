@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <title>Lost and Found</title>
+    <style>
+        body {background-color: lightcyan;}
+        h1 {color: darkblue;}
+        h3 {color: darkcyan;}
+        th {color: black;}
+        td {color: black;}
+        .jumbotron {background-color: lightcyan;}
+    </style>
+</head>
+
+<body>
+
+
+
+
+<div th:fragment="navlinks">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+
+                <li class="nav-item">
+                    <h2><a class="nav-link" href="/">Home</a></h2>
+                </li>
+
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+
+                <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" href="/newuser">New User</a>
+                </li>
+
+                <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')" class="nav-item">
+                    <a class="nav-link" href="/viewlostitems">View Lost Items</a>
+                </li>
+
+
+
+                <li sec:authorize="hasAuthority('USER')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User Actions
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/addlostitem">Add Lost Item</a>
+                        <a class="dropdown-item" href="/viewmyitems">View My Lost Items</a>
+
+
+                    </div>
+                </li>
+
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin Actions
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/addlostitem">Add Lost Item</a>
+                        <a class="dropdown-item" href="/viewfounditems">View All Found Items</a>
+
+                    </div>
+                </li>
+
+
+
+
+            </ul>
+
+        </div>
+    </nav>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
